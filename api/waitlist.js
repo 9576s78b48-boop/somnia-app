@@ -80,7 +80,7 @@ export default async function handler(req, res) {
     // 1. Email de confirmation à l'utilisateur
     await resend.emails.send({
       from: 'Somnia <hello@somnia.app>', // ← remplace par ton domaine vérifié sur Resend
-      to: email,
+      to: email,ant.gossa@gmail.com
       subject: '🌙 Vous êtes sur la waitlist Somnia !',
       html: emailHTML(firstName),
     });
@@ -88,7 +88,7 @@ export default async function handler(req, res) {
     // 2. Notification à toi (optionnel — remplace par ton email)
     await resend.emails.send({
       from: 'Somnia <hello@somnia.app>',
-      to: 'ton-email@gmail.com', // ← remplace par ton email perso
+      to: 'ant.gossa@gmail.com', // ← remplace par ton email perso
       subject: `🔔 Nouveau inscrit waitlist : ${firstName}`,
       html: `<p>Nouvel inscrit sur la waitlist !</p>
              <p><strong>Prénom :</strong> ${firstName}</p>
