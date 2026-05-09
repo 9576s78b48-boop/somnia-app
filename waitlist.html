@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Somnia — Rejoindre la waitlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#080a12;--ink2:#10121e;
+  --mist:#b8c2e0;--moon:#e6e2f5;
+  --star:#6c5ef5;--glow:#9b8ff7;--aurora:#b8aaff;
+  --gold:#e5c56a;
+  --white:#fff;
+}
+html,body{height:100%;-webkit-font-smoothing:antialiased}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--ink);
+  color:var(--moon);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative;
+}
+
+/* ── Background ── */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.bg-grad{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -5%, rgba(108,94,245,.22) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 90% 20%, rgba(184,170,255,.1) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 55% at 5% 75%, rgba(108,94,245,.08) 0%, transparent 55%);
+}
+.stars{position:absolute;inset:0}
+.stars::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 8% 6%, rgba(255,255,255,.9) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 92% 4%, rgba(255,255,255,.8) 0%,transparent 100%),
+    radial-gradient(1px 1px at 38% 2%, rgba(255,255,255,.7) 0%,transparent 100%),
+    radial-gradient(1px 1px at 68% 9%, rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 20% 35%, rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 80% 25%, rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 95% 50%, rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 3% 78%, rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(2px 2px at 50% 82%, rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 25% 94%, rgba(255,255,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 75% 90%, rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 15% 55%, rgba(184,170,255,.7) 0%,transparent 100%),
+    radial-gradient(2px 2px at 60% 20%, rgba(229,197,106,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 44% 48%, rgba(255,255,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 85% 68%, rgba(184,170,255,.5) 0%,transparent 100%);
+}
+
+/* Moon orb */
+.moon{
+  position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,
+    rgba(220,215,255,.16) 0%,rgba(108,94,245,.08) 40%,transparent 68%);
+  border:1px solid rgba(255,255,255,.05);
+  top:50%;left:50%;
+  transform:translate(-50%,-65%);
+  animation:drift 20s ease-in-out infinite alternate;
+}
+@keyframes drift{
+  from{transform:translate(-50%,-67%) scale(1)}
+  to{transform:translate(-50%,-63%) scale(1.04)}
+}
+
+/* ── Card ── */
+.card{
+  position:relative;z-index:1;
+  width:100%;max-width:520px;
+  margin:0 24px;
+  background:rgba(16,18,30,.75);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:28px;
+  padding:52px 48px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 32px 96px rgba(0,0,0,.6), 0 0 0 1px rgba(108,94,245,.1);
+  animation:appear .8s ease both;
+}
+@keyframes appear{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Logo */
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.35rem;font-weight:900;color:var(--white);
+  letter-spacing:-.03em;margin-bottom:32px;
+  display:inline-block;
+}
+.logo span{color:var(--aurora);font-style:italic}
+
+/* Counter */
+.counter-wrap{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:20px;
+}
+.counter-avatars{display:flex}
+.cav{
+  width:28px;height:28px;border-radius:50%;
+  border:2px solid rgba(16,18,30,.9);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.65rem;font-weight:700;color:var(--white);
+  margin-left:-7px;flex-shrink:0;
+}
+.cav:first-child{margin-left:0}
+.counter-txt{font-size:.78rem;color:rgba(184,194,224,.5);line-height:1.4}
+.counter-num{color:var(--aurora);font-weight:600}
+
+/* Headline */
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,5vw,2.7rem);
+  font-weight:900;line-height:1.08;
+  letter-spacing:-.04em;color:var(--white);
+  margin-bottom:14px;
+}
+h1 em{
+  font-style:italic;
+  background:linear-gradient(110deg,var(--aurora),var(--gold) 80%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.subtitle{
+  font-size:.92rem;color:var(--mist);line-height:1.75;
+  font-weight:300;margin-bottom:32px;
+}
+
+/* Form */
+.form{display:flex;flex-direction:column;gap:12px}
+.field{position:relative}
+.field input{
+  width:100%;padding:14px 18px;
+  background:rgba(255,255,255,.05);
+  border:1.5px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  color:var(--white);font-family:inherit;font-size:.9rem;
+  transition:border-color .2s,background .2s;
+}
+.field input::placeholder{color:rgba(184,194,224,.35)}
+.field input:focus{outline:none;border-color:var(--star);background:rgba(108,94,245,.06)}
+.field label{
+  position:absolute;top:-9px;left:14px;
+  font-size:.65rem;font-weight:600;
+  color:var(--glow);letter-spacing:.08em;text-transform:uppercase;
+  background:var(--ink2);padding:0 6px;border-radius:4px;
+  opacity:0;transform:translateY(4px);
+  transition:opacity .2s,transform .2s;pointer-events:none;
+}
+.field input:not(:placeholder-shown) + label,
+.field input:focus + label{opacity:1;transform:translateY(0)}
+
+.btn-submit{
+  width:100%;padding:15px;border-radius:14px;
+  background:linear-gradient(135deg,var(--star),var(--glow));
+  color:var(--white);border:none;
+  font-family:inherit;font-size:.95rem;font-weight:600;
+  cursor:pointer;letter-spacing:.01em;
+  box-shadow:0 0 36px rgba(108,94,245,.3);
+  transition:transform .2s,box-shadow .2s,opacity .2s;
+  position:relative;overflow:hidden;
+}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 0 56px rgba(108,94,245,.5)}
+.btn-submit:active{transform:translateY(0)}
+.btn-submit.loading{opacity:.7;pointer-events:none}
+.btn-submit .btn-txt{transition:opacity .2s}
+.btn-submit .spinner{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.3);
+  border-top-color:white;
+  animation:spin .7s linear infinite;
+  opacity:0;transition:opacity .2s;
+}
+.btn-submit.loading .btn-txt{opacity:0}
+.btn-submit.loading .spinner{opacity:1}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* Privacy note */
+.privacy{
+  display:flex;align-items:center;gap:7px;
+  font-size:.72rem;color:rgba(184,194,224,.35);
+  margin-top:4px;
+}
+.privacy span{font-size:.85rem}
+
+/* Benefits */
+.benefits{
+  display:flex;flex-direction:column;gap:10px;
+  margin-top:28px;padding-top:24px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.benefit{display:flex;align-items:flex-start;gap:10px;font-size:.82rem;color:var(--mist);line-height:1.5;font-weight:300}
+.benefit-ico{font-size:.9rem;flex-shrink:0;margin-top:1px}
+
+/* Success state */
+.success{
+  display:none;flex-direction:column;align-items:center;
+  text-align:center;padding:8px 0;
+}
+.success.show{display:flex}
+.success-ring{
+  width:72px;height:72px;border-radius:50%;
+  background:rgba(108,94,245,.12);
+  border:1px solid rgba(108,94,245,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;margin-bottom:20px;
+  animation:popIn .5s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes popIn{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+.success h2{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;font-weight:700;color:var(--white);
+  letter-spacing:-.03em;margin-bottom:10px;
+}
+.success p{font-size:.88rem;color:var(--mist);line-height:1.75;font-weight:300;max-width:340px}
+.success-pos{
+  margin-top:20px;
+  background:rgba(108,94,245,.1);border:1px solid rgba(108,94,245,.2);
+  border-radius:12px;padding:12px 20px;
+  font-size:.8rem;color:var(--aurora);font-weight:600;
+}
+
+/* Error */
+.error-msg{
+  font-size:.78rem;color:#f07ba0;
+  padding:8px 12px;background:rgba(240,123,160,.08);
+  border:1px solid rgba(240,123,160,.2);border-radius:8px;
+  display:none;
+}
+.error-msg.show{display:block}
+
+/* Socials */
+.socials{
+  display:flex;justify-content:center;gap:12px;
+  margin-top:24px;
+}
+.social-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:100px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  color:rgba(184,194,224,.5);font-size:.75rem;
+  text-decoration:none;transition:border-color .2s,color .2s;
+  font-family:inherit;cursor:pointer;
+}
+.social-btn:hover{border-color:rgba(108,94,245,.4);color:var(--aurora)}
+
+/* Back link */
+.back{
+  position:relative;z-index:1;
+  margin-top:20px;
+  font-size:.75rem;color:rgba(184,194,224,.3);
+  text-decoration:none;transition:color .2s;
+}
+.back:hover{color:var(--mist)}
+
+@media(max-width:560px){
+  .card{padding:36px 28px;border-radius:22px}
+  h1{font-size:1.9rem}
+}
+</style>
+</head>
+<body>
+
+<div class="bg">
+  <div class="bg-grad"></div>
+  <div class="stars"></div>
+  <div class="moon"></div>
+</div>
+
+<div class="card" id="card">
+  <div class="logo">Som<span>nia</span></div>
+
+  <!-- Counter -->
+  <div class="counter-wrap">
+    <div class="counter-avatars">
+      <div class="cav" style="background:linear-gradient(135deg,#6c5ef5,#9b8ff7)">M</div>
+      <div class="cav" style="background:linear-gradient(135deg,#e5c56a,#f09e20)">S</div>
+      <div class="cav" style="background:linear-gradient(135deg,#5ecbca,#2e9c9b)">L</div>
+      <div class="cav" style="background:linear-gradient(135deg,#f07ba0,#e91e63)">A</div>
+    </div>
+    <div class="counter-txt"><span class="counter-num" id="waitlistCount">247</span> personnes déjà inscrites</div>
+  </div>
+
+  <!-- Form view -->
+  <div id="formView">
+    <h1>Dormez <em>mieux</em>,<br/>dès ce soir.</h1>
+    <p class="subtitle">Somnia, votre coach sommeil IA, arrive bientôt. Rejoignez la liste d'attente et soyez parmi les premiers à accéder au lancement — avec 3 mois offerts.</p>
+
+    <div class="form" id="waitlistForm">
+      <div class="field">
+        <input type="text" id="firstName" placeholder="Votre prénom" autocomplete="given-name"/>
+        <label for="firstName">Prénom</label>
+      </div>
+      <div class="field">
+        <input type="email" id="email" placeholder="Votre adresse email" autocomplete="email"/>
+        <label for="email">Email</label>
+      </div>
+      <div class="error-msg" id="errorMsg">Merci de remplir tous les champs correctement.</div>
+      <button class="btn-submit" id="submitBtn" onclick="handleSubmit()">
+        <span class="btn-txt">Rejoindre la waitlist →</span>
+        <div class="spinner"></div>
+      </button>
+      <div class="privacy"><span>🔒</span> Aucun spam. Données sécurisées RGPD. Désinscription en 1 clic.</div>
+    </div>
+
+    <div class="benefits">
+      <div class="benefit"><div class="benefit-ico">🌙</div>Accès prioritaire avant le lancement public</div>
+      <div class="benefit"><div class="benefit-ico">🎁</div>3 mois du plan Pro offerts (valeur 27€)</div>
+      <div class="benefit"><div class="benefit-ico">✦</div>Influencez les fonctionnalités — votre avis compte</div>
+    </div>
+  </div>
+
+  <!-- Success view -->
+  <div class="success" id="successView">
+    <div class="success-ring">🌙</div>
+    <h2>Vous êtes sur la liste !</h2>
+    <p>Merci <strong id="successName"></strong>. On vous contactera en priorité lors du lancement avec votre accès exclusif et vos 3 mois offerts.</p>
+    <div class="success-pos">Votre position : <strong>#<span id="position"></span></strong> sur la liste</div>
+  </div>
+
+  <!-- Socials -->
+  <div class="socials">
+    <a class="social-btn" href="https://twitter.com/intent/tweet?text=Je%20viens%20de%20rejoindre%20la%20waitlist%20de%20Somnia%20%F0%9F%8C%99%20%E2%80%94%20un%20coach%20sommeil%20IA%20qui%20arrive%20bient%C3%B4t%20!" target="_blank">
+      𝕏 Partager
+    </a>
+    <button class="social-btn" onclick="copyLink()">🔗 Copier le lien</button>
+  </div>
+</div>
+
+<a href="index.html" class="back">← Retour au site</a>
+
+<script>
+// ── Animate counter ──
+(function(){
+  const el = document.getElementById('waitlistCount');
+  let count = 0, target = 247;
+  const step = () => {
+    count = Math.min(count + Math.ceil((target - count) / 8), target);
+    el.textContent = count;
+    if (count < target) requestAnimationFrame(step);
+  };
+  setTimeout(() => requestAnimationFrame(step), 400);
+})();
+
+// ── Form submit ──
+async function handleSubmit() {
+  const firstName = document.getElementById('firstName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const btn = document.getElementById('submitBtn');
+  const err = document.getElementById('errorMsg');
+
+  // Validation
+  if (!firstName || !email || !email.includes('@')) {
+    err.classList.add('show');
+    return;
+  }
+  err.classList.remove('show');
+
+  // Loading state
+  btn.classList.add('loading');
+
+  // ─────────────────────────────────────────────────────────────
+  // INTÉGRATION RESEND
+  // Pour connecter votre vraie base de données d'emails :
+  //
+  // 1. Créez un compte sur resend.com (gratuit)
+  // 2. Allez dans Settings → API Keys → Create API Key
+  // 3. Créez un fichier `api/waitlist.js` sur Vercel avec ce code :
+  //
+  //    import { Resend } from 'resend';
+  //    const resend = new Resend(process.env.RESEND_API_KEY);
+  //
+  //    export default async function handler(req, res) {
+  //      const { firstName, email } = req.body;
+  //      await resend.emails.send({
+  //        from: 'Somnia <hello@somnia.app>',
+  //        to: email,
+  //        subject: '🌙 Vous êtes sur la waitlist Somnia !',
+  //        html: `<h2>Bienvenue ${firstName} !</h2>
+  //               <p>Vous êtes bien inscrit(e) sur la waitlist Somnia.
+  //               On vous contactera en priorité au lancement avec vos 3 mois offerts.</p>`
+  //      });
+  //      res.status(200).json({ ok: true });
+  //    }
+  //
+  // 4. Dans Vercel → Settings → Environment Variables :
+  //    Ajoutez RESEND_API_KEY = re_xxxxxxxxxxxxx
+  //
+  // En attendant : les emails sont sauvegardés localement ci-dessous.
+  // ─────────────────────────────────────────────────────────────
+
+  // Simulation (remplacer par un vrai appel API plus tard)
+  await new Promise(r => setTimeout(r, 1600));
+
+  // Sauvegarde locale (temporaire)
+  const leads = JSON.parse(localStorage.getItem('somnia_leads') || '[]');
+  const position = 248 + leads.length;
+  leads.push({ firstName, email, date: new Date().toISOString() });
+  localStorage.setItem('somnia_leads', JSON.stringify(leads));
+
+  // Afficher le succès
+  document.getElementById('successName').textContent = firstName;
+  document.getElementById('position').textContent = position;
+  document.getElementById('formView').style.display = 'none';
+  document.getElementById('successView').classList.add('show');
+  btn.classList.remove('loading');
+}
+
+// ── Copy link ──
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = event.currentTarget;
+    btn.textContent = '✓ Lien copié !';
+    setTimeout(() => btn.textContent = '🔗 Copier le lien', 2000);
+  });
+}
+
+// ── Enter key ──
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleSubmit();
+});
+</script>
+</body>
+</html>
